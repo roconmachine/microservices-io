@@ -1,0 +1,14 @@
+
+server:
+  port: 8070
+spring:
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/identity
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database: postgresql
+    dialect: org.hibernate.dialect.PostgreSQLDialect

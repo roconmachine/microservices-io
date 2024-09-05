@@ -1,0 +1,22 @@
+#spring:
+#    config:
+#        import: optional:configserver:http://localhost:8888
+#    application:
+#        name: identity-service
+
+
+
+server:
+    port: 8070
+spring:
+
+    datasource:
+        url: jdbc:postgresql://localhost:5432/identity
+        username: postgres
+        password: postgres
+    jpa:
+        hibernate:
+            ddl-auto: update
+        database: postgresql
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
