@@ -8,6 +8,8 @@ import com.roconmachine.io.identity_service.dto.AuthResponse;
 import com.roconmachine.io.identity_service.dto.TokenResponse;
 import com.roconmachine.io.identity_service.entity.UserCredential;
 import com.roconmachine.io.identity_service.service.AuthService;
+import io.jsonwebtoken.impl.crypto.SignatureValidator;
+import io.jsonwebtoken.security.SignatureException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,7 +48,14 @@ public class AuthController {
 
     @GetMapping("/validate")
     public ResponseEntity<AuthResponse> validateToken(@RequestParam("token") String token) {
-        service.validateToken(token);
+        try {
+            service.validateToken(token);
+        }catch (SignatureException signatureException){
+            return new ResponseEntity<>(AuthResponse.builder().
+                    code(ResponseMessagesConfig.ResponseStatus.INVALID_TOKEN.getCode()).
+                    message(ResponseMessagesConfig.ResponseStatus.INVALID_TOKEN.getMessage()).build(), HttpStatus.BAD_REQUEST);
+        }
+
         return new ResponseEntity<>(AuthResponse.builder().code(ResponseMessagesConfig.ResponseStatus.VALID_TOKEN.getCode()).message(ResponseMessagesConfig.ResponseStatus.VALID_TOKEN.getMessage()).build(), HttpStatus.OK);
     }
 
