@@ -13,9 +13,4 @@ public class IdentityServiceApplication {
 		SpringApplication.run(IdentityServiceApplication.class, args);
 	}
 
-	@GetMapping("/pinc")
-	public String getPing(){
-		return "Hello World";
-	}
-
 }
