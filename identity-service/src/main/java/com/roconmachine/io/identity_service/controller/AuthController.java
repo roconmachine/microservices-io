@@ -1,16 +1,13 @@
 package com.roconmachine.io.identity_service.controller;
 
 
-import com.roconmachine.io.identity_service.config.ApplicationConfig;
+
 import com.roconmachine.io.identity_service.config.ResponseMessagesConfig;
 import com.roconmachine.io.identity_service.dto.AuthRequest;
 import com.roconmachine.io.identity_service.dto.AuthResponse;
 import com.roconmachine.io.identity_service.dto.TokenResponse;
-import com.roconmachine.io.identity_service.entity.UserCredential;
 import com.roconmachine.io.identity_service.service.AuthService;
-import io.jsonwebtoken.impl.crypto.SignatureValidator;
 import io.jsonwebtoken.security.SignatureException;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
