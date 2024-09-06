@@ -1,0 +1,97 @@
+openapi: 3.0.3
+info:
+  title: Notification API 
+  version: 0.1.9
+servers:
+  - url: http://localhost:8060
+    description: Localhost 
+  
+paths:
+  /notify:
+    post:
+      summary: Add a new notification to dispatch
+      operationId: addNotification
+      requestBody:
+        description: Create a notification to dispatch respective channel like email, sms, kafka
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/notification'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/notification'
+        required: true
+      responses:
+        '201':
+          description: Successful created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/notification'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/notification'
+        '400':
+          description: Ban request
+        default:
+          description: successful created
+          
+components:
+  schemas:
+    notification:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        type:
+          type : string
+          enum : ['EMAIL','SMS','KAFKA']
+        header :
+          type : string
+          example : title of the message 
+        message:
+          type : string
+          example: this is a message body to send
+        template : 
+            $ref : '#/components/schemas/messageTemplate'
+        status:
+          type : string
+          enum : ['NEW', 'SENT', 'FAILED']
+    
+    messageTemplate : 
+      type : object
+      properties : 
+        id : 
+          type : integer
+          format : int64
+          example : 10
+        
+        type:
+          type : string
+          enum : ['EMAIL','SMS','KAFKA']
+        
+        name :
+          type : string
+          example : user register email template, html type
+          
+        template : 
+          type : string 
+          example : '<div>email body of the the template</div>'
+        
+        destinations:
+          type: array
+          items:
+            type: string
+            example : ['roconmachine@gmail.com', '']
+          
+        sender:
+          type : string
+          example : roconmachine@gmail.com
+
+
+
+
+
+
