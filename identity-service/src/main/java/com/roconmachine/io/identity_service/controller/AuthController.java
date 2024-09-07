@@ -8,13 +8,17 @@ import com.roconmachine.io.identity_service.dto.AuthResponse;
 import com.roconmachine.io.identity_service.dto.TokenResponse;
 import com.roconmachine.io.identity_service.service.AuthService;
 import io.jsonwebtoken.security.SignatureException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+
 
 @RestController
 @RequestMapping("/api/auth")
@@ -28,7 +32,7 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<AuthResponse> addNewUser(@RequestBody AuthRequest user) {
+    public ResponseEntity<AuthResponse> addNewUser(@Valid @RequestBody AuthRequest user) {
         var response = service.saveUser(user);
         return new ResponseEntity<>(response,response.getCode() == ResponseMessagesConfig.ResponseStatus.USER_CREATED.getCode() ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST);
     }
