@@ -7,3 +7,9 @@ spring:
             port: 27017
             database: notification
             authentication-database: admin
+server:
+    port: 8071
+
+api:
+    version : /v01
+    service: /notification
