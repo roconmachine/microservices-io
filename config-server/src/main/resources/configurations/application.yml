@@ -9,4 +9,4 @@ spring:
     config:
       override-system-properties: false
 api:
-  version : v01
+  version : /v01
