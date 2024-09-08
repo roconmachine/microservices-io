@@ -17,33 +17,29 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/notification'
+              $ref: '#/components/schemas/RequestNotification'
           application/xml:
             schema:
-              $ref: '#/components/schemas/notification'
+              $ref: '#/components/schemas/RequestNotification'
         required: true
       responses:
         '201':
           description: Successful created
-#          content:
-#            application/json:
-#              schema:
-#                $ref: '#/components/schemas/notification'
-#            application/xml:
-#              schema:
-#                $ref: '#/components/schemas/notification'
         '400':
-          description: Ban request
+          description: Bad request
         default:
           description: successful created
 
 components:
   schemas:
-    notification:
+    RequestNotification:
       type: object
+      additionalProperties  : false
       required:
           - type
           - header
+          - destinations
+          - messageTemplate
       properties:
         type:
           type : string
@@ -64,15 +60,17 @@ components:
 
     messageTemplate :
       type : object
+      additionalProperties  : false
+      required :
+        - name
+        - template
       properties :
-        id :
-          type : integer
-          format : int64
-          example : 10
         name :
           type : string
+          required : true
         template :
           type : string
+          required : true
 
 
 
