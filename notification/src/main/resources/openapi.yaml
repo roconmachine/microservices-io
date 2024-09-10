@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: Notification API
 
-  version: 0.1.9
+  version: 1.0.0
 servers:
   - url: http://localhost:8060
     description: Localhost
@@ -10,6 +10,8 @@ servers:
 paths:
   /notify:
     post:
+      tags:
+        - notification
       summary: Add a new notification to dispatch
       operationId: addNotification
       requestBody:
