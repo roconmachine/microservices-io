@@ -32,11 +32,15 @@ public class NotifyController  implements NotifyApi {
 
     @Autowired
     private ModelMapper modelMapper;
-    @PostMapping("/notify")
-    public ResponseEntity<Void> addNotification(RequestNotification notification) throws MessagingException {
+
+    public ResponseEntity<Void> addNotification(RequestNotification notification) {
         Notification noti  = modelMapper.map(notification, Notification.class);
         noti.setStatus(NotificationStatus.SENT);
-        emailService.sendEmail(notification.getDestinations(), notification.getHeader(), notification.getTemplate().getTemplate());
+        try {
+            emailService.sendEmail(notification.getDestinations(), notification.getHeader(), notification.getTemplate().getTemplate());
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
         notificationService.save(noti);
         return new ResponseEntity<Void>( HttpStatus.CREATED );
     }
