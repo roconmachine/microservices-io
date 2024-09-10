@@ -7,9 +7,26 @@ spring:
             port: 27017
             database: notification
             authentication-database: admin
+    mail:
+        host: localhost
+        port: 1025
+        username: demo
+        password: demo1@3
+        properties:
+            mail:
+                smtp:
+                    trust: "*"
+                auth: true
+                starttls:
+                    enabled: true
+                connectiontimeout: 5000
+                timeout: 3000
+                writetimeout: 5000
 server:
     port: 8071
 
 api:
     version : /v01
     service: /notification
+openapi :
+    apiDocsUrl =
