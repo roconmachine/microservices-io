@@ -93,10 +93,16 @@
 			<version>3.3.3</version>
 		</dependency>
 		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>0.2.6</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -124,6 +130,34 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>7.5.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<generatorName>java</generatorName>
+							<inputSpec>${project.basedir}/src/main/resources/endpoints/notification.yaml</inputSpec>
+							<invokerPackage>com.roconmachine.io.identity_service.noti.client</invokerPackage>
+							<modelPackage>com.roconmachine.io.identity_service.noti.models</modelPackage>
+							<apiPackage>com.roconmachine.io.identity_service.noti.api</apiPackage>
+							<generateApiTests>false</generateApiTests>
+							<generateModelTests>false</generateModelTests>
+							<library>resttemplate</library>
+							<configOptions>
+								<useSpringBoot3>true</useSpringBoot3>
+								<useJakartaEe>true</useJakartaEe>
+								<additionalModelTypeAnnotations>@lombok.Data @lombok.AllArgsConstructor</additionalModelTypeAnnotations>
+							</configOptions>
+
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
