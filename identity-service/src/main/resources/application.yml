@@ -20,3 +20,5 @@ spring:
         database: postgresql
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
+notification :
+    url : http://localhost:8071/v01/notification

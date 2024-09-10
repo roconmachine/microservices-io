@@ -6,10 +6,14 @@ info:
 servers:
   - url: http://localhost:8060
     description: Localhost
-
+tags:
+  - name: notification
+    description: Everything about notification
 paths:
   /notify:
     post:
+      tags:
+        - notification
       summary: Add a new notification to dispatch
       operationId: addNotification
       requestBody:
