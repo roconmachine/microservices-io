@@ -44,7 +44,7 @@ components:
         type:
           type : string
           enum : ['EMAIL','SMS','KAFKA']
-          required: true
+
         header :
           type : string
           example : title of the message
@@ -67,10 +67,10 @@ components:
       properties :
         name :
           type : string
-          required : true
+
         template :
           type : string
-          required : true
+
 
 
 
