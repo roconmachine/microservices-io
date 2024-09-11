@@ -5,7 +5,7 @@
     <groupId>com.roconmachine.io</groupId>
     <artifactId>parent.pom</artifactId>
     <version>0.0.7</version>
-    <name>io.parent</name>
+    <name>parent pom</name>
     <packaging>pom</packaging>
 
     <url>http://maven.apache.org</url>
