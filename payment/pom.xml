@@ -13,9 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>payment</name>
 	<description>The microservice enables payment.</description>
-	<properties>
-		<kafka.version>3.2.3</kafka.version>
-	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.roconmachine</groupId>
