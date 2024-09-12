@@ -3,6 +3,7 @@ package com.roconmachine.io.payment;
 import com.roconmachine.io.payment.producer.KafkaRequestMessage;
 import com.roconmachine.io.payment.producer.PaymentProducer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +12,8 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 @SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
 public class PaymentApplication implements CommandLineRunner {
 
+	@Value("${payment.kafkaTopic}")
+	private String topic;
 	@Autowired
 	private PaymentProducer producer;
 	public static void main(String[] args) {
