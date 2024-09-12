@@ -6,10 +6,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Configuration
 public class ApplicationConfig {
@@ -20,7 +16,7 @@ public class ApplicationConfig {
     }
 
 
-    @Value("$notification.url")
+    @Value("${notification.url}")
     private String notificationUrl;
     @Bean
     public NotificationApi getNotificationApi(){

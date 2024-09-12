@@ -28,5 +28,3 @@ server:
 api:
     version : /v01
     service: /notification
-openapi :
-    apiDocsUrl =
