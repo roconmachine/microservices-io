@@ -96,7 +96,7 @@
 							<configOptions>
 								<useSpringBoot3>true</useSpringBoot3>
 								<useJakartaEe>true</useJakartaEe>
-								<additionalModelTypeAnnotations>@lombok.Data @lombok.AllArgsConstructor</additionalModelTypeAnnotations>
+								<additionalModelTypeAnnotations>@lombok.AllArgsConstructor</additionalModelTypeAnnotations>
 							</configOptions>
 
 						</configuration>
