@@ -1,9 +1,11 @@
 eureka:
-  instance:
-    hostname: localhost
   client:
+    fetch-registry: true
+    register-with-eureka: true
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: ${EUREKA_URI:http://192.168.0.138:8761/eureka}
+  healthcheck :
+    enabled : true
 spring:
   cloud:
     config:

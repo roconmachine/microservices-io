@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "/api/${api.version}/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/accounts/api/", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AccountController {
 
     private final AccountService accountService;
