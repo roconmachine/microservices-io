@@ -7,6 +7,9 @@ services:
       context: ./discovery
       dockerfile: Dockerfile
     container_name: discovery-service
+    environment:
+      - EUREKA_URI=http://192.168.0.138:8761/eureka
+      - CONFIG_SERVER_URL=http://192.168.0.138:8888
     ports:
       - "8761:8761"
     networks:
@@ -27,8 +30,11 @@ services:
     container_name: gatekeeper-service
     environment:
       - EUREKA_URI=http://192.168.0.138:8761/eureka
+      - CONFIG_SERVER_URL=http://192.168.0.138:8888
+      - OAUTH2_RESOURCE_SERVER_JWT_ISSUER_URI=http://192.168.0.138:9090/realms/com-microservice-io
     depends_on:
       - discovery
+      - config-server
     ports:
       - "8080:8080"
     networks:

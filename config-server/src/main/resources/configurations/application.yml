@@ -4,6 +4,9 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: ${EUREKA_URI:http://192.168.0.138:8761/eureka}
+  instance:
+    hostname: 192.168.0.138
+    instance-id: 192.168.0.138:${server.port}
   healthcheck :
     enabled : true
 spring:
