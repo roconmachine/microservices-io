@@ -75,6 +75,25 @@ services:
     networks:
       - com-roconmachine-io
     restart: unless-stopped
+  user-info:
+    build:
+      context: ./user-info
+      dockerfile: Dockerfile
+    environment:
+      - KC_CLIENT_ID=api-app
+      - KC_CLIENT_SECRET=3ePBAjSJkWWKP0HjGpezJjWtK2M9jkSq
+      - KC_GRANT_TYPE=client_credentials
+      - KC_REALM=microservice-io
+      - KC_SERVER_URL=http://192.168.0.138:9090
+      - EUREKA_URI=http://192.168.0.138:8761/eureka
+      - CONFIG_SERVER_URL=http://192.168.0.138:8888
+    ports:
+      - 8081:8081
+    depends_on:
+      - config-server
+      - discovery
+    networks:
+      - com-roconmachine-io
 networks:
   com-roconmachine-io:
     driver: bridge
