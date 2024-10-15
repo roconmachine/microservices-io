@@ -24,7 +24,6 @@ spring:
                 git:
                     uri : https://github.com/roconmachine/microservices-io-config/
 
-                    skip-ssl-validation: true
-                    default-label: master
+
 
 
