@@ -23,8 +23,7 @@ spring:
             server:
                 git:
                     uri : https://github.com/roconmachine/microservices-io-config/
-#                    username: roconmachine
-#                    password: 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
+
                     skip-ssl-validation: true
                     default-label: master
 
