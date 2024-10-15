@@ -1,0 +1,19 @@
+spring:
+    config:
+        import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888}
+    application:
+        name: user-info
+
+#keycloak:
+#    clientid: ${KC_CLIENT_ID:api-app}
+#    clientsecret: ${KC_CLIENT_SECRET:3ePBAjSJkWWKP0HjGpezJjWtK2M9jkSq}
+#    grantType: ${KC_GRANT_TYPE:client_credentials}
+#    realm: ${KC_REALM:microservice-io}
+#    server-url: ${KC_SERVER_URL:http://localhost:9090}
+#server:
+#    port: 8081
+#service:
+#    apiversion: v1.0
+#    name: userservice
+
+
