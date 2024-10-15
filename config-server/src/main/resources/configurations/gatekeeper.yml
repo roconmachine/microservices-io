@@ -8,13 +8,13 @@ spring:
           uri: "lb://ACCOUNTS"
           predicates:
             - Path=/accounts/**
-  spring:
-    security:
-      oauth2:
-        resourceserver:
-          jwt:
-            issuer-uri:
-              ${OAUTH2_RESOURCE_SERVER_JWT_ISSUER_URI : http://192.168.0.138:9090/realms/com-microservice-io}
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri:
+            ${OAUTH2_RESOURCE_SERVER_JWT_ISSUER_URI:http://192.168.0.138:9090/realms/microservice-io}
 logging:
   level:
     org:

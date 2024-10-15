@@ -1,5 +1,6 @@
 package com.roconmachine.io.gatekeeper.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -19,6 +20,12 @@ import java.util.Arrays;
 @EnableWebFluxSecurity
 public class SecurityConfig {
 
+
+
+    @Value(
+            "${spring.security.oauth2.resourceserver.jwt.issuer-uri}"
+    )
+    private String issuer_id;
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         http
@@ -47,7 +54,7 @@ public class SecurityConfig {
 
     @Bean
     public ReactiveJwtDecoder jwtDecoder() {
-        return ReactiveJwtDecoders.fromIssuerLocation("http://localhost:9090/realms/com-microservice-io");
+        return ReactiveJwtDecoders.fromIssuerLocation(issuer_id);
     }
 
     @Bean

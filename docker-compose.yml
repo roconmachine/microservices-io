@@ -31,7 +31,7 @@ services:
     environment:
       - EUREKA_URI=http://192.168.0.138:8761/eureka
       - CONFIG_SERVER_URL=http://192.168.0.138:8888
-      - OAUTH2_RESOURCE_SERVER_JWT_ISSUER_URI=http://192.168.0.138:9090/realms/com-microservice-io
+      - OAUTH2_RESOURCE_SERVER_JWT_ISSUER_URI=http://192.168.0.138:9090/realms/microservice-io
     depends_on:
       - discovery
       - config-server
@@ -94,6 +94,43 @@ services:
       - discovery
     networks:
       - com-roconmachine-io
+  postgresql:
+    container_name: ms_pg_sql
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: identity_service
+    volumes:
+      - $HOME/uzrnem/database/postgresql/data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - com-roconmachine-io
+    restart: unless-stopped
+
+  keycloak:
+    container_name: keycloak-server
+    image: quay.io/keycloak/keycloak:24.0.2
+    ports:
+      - 9090:8080
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_HOSTNAME: 192.168.0.138
+#      KC_HOSTNAME_PORT: 8080
+#      KC_HOSTNAME_STRICT_BACKCHANNEL: false
+#      KC_HTTP_ENABLED: true
+#      KC_HOSTNAME_STRICT_HTTPS: false
+#      KC_HEALTH_ENABLED: true
+#      KC_DB: postgresql
+#      KC_DB_URL: jdbc:postgresql://postgres/keycloack
+#      KC_DB_USERNAME: postgres
+#      KC_DB_PASSWORD: postgres
+    networks:
+      - com-roconmachine-io
+    command:
+      - "start-dev"
 networks:
   com-roconmachine-io:
     driver: bridge
