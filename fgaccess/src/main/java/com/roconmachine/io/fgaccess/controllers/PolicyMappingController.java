@@ -6,6 +6,7 @@ import com.roconmachine.io.dataframe.access.models.PolicyMapping;
 import com.roconmachine.io.fgaccess.converter.PolicyMappingConverter;
 import com.roconmachine.io.fgaccess.dto.PolicyMappingDto;
 import com.roconmachine.io.fgaccess.service.PolicyMappingService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +16,10 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import javax.validation.Valid;
 import java.util.UUID;
 
 @RestController
+
 @RequestMapping("${service.name}/${service.apiversion}")
 @RequiredArgsConstructor
 public class PolicyMappingController implements PolicyMappingsApi {
@@ -59,6 +60,11 @@ public class PolicyMappingController implements PolicyMappingsApi {
     @Override
     public Mono<ResponseEntity<PolicyMapping>> policyMappingsPost(@Valid Mono<PolicyMapping> mono, ServerWebExchange serverWebExchange) {
 
-        return null;
+         return mono.map(policyMapping -> PolicyMappingConverter.convertPolicyMapping(policyMapping))
+                         .flatMap(policyMappingDto -> service.savePolicyMapping(policyMappingDto))
+                                 .map(savedPM -> PolicyMappingConverter.convertPolicyMapping(savedPM))
+                                         .map(ResponseEntity::ok)
+                 .defaultIfEmpty(ResponseEntity.badRequest().build());
     }
+
 }

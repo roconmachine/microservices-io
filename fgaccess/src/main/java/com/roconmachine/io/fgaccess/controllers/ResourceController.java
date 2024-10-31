@@ -3,6 +3,7 @@ package com.roconmachine.io.fgaccess.controllers;
 import com.roconmachine.io.dataframe.access.interfaces.ResourcesApi;
 import com.roconmachine.io.dataframe.access.models.Resource;
 import com.roconmachine.io.fgaccess.service.PolicyMappingService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +12,6 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping("${service.name}/${service.apiversion}")

@@ -10,7 +10,7 @@ import reactor.core.publisher.Flux;
 
 @AllArgsConstructor
 @Service
-public class PolicyMappingRepositoryImp{
+public class PolicyMappingSearch {
     final R2dbcEntityTemplate r2dbcTemplate;
     public Flux<PolicyMappingEntity> search(PolicyMappingEntity policyMapping){
 
