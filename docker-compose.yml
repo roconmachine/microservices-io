@@ -100,7 +100,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: identity_service
+#      POSTGRES_DB: identity_service
     volumes:
       - $HOME/uzrnem/database/postgresql/data:/var/lib/postgresql/data
     ports:
