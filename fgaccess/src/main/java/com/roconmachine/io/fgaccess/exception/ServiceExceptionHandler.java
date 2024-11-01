@@ -1,4 +1,4 @@
-package com.roconmachine.io.fgaccess.config;
+package com.roconmachine.io.fgaccess.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
@@ -18,7 +18,7 @@ import java.util.Map;
 @Slf4j
 @RestControllerAdvice
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public class ErrorController {
+public class ServiceExceptionHandler {
 
     @ExceptionHandler(WebExchangeBindException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(final WebExchangeBindException ex) {

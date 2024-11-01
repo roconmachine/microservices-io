@@ -30,5 +30,33 @@ public class PolicyMappingService {
     }
 
 
+    public Mono<Boolean> deletePolicyMappingsId(Long id) {
+        return policyMappingRepository.existsById(id)
+                .flatMap(existing -> {
+                    if (existing) return policyMappingRepository.deleteById(id).then(Mono.just(true));
+                    else return Mono.just(false);
+                });
+    }
+
+    public Mono<PolicyMappingDto> updatePolicyMappingsId(PolicyMappingDto dto) {
+        return policyMappingRepository.save(this.modelMapper.map(dto, PolicyMappingEntity.class))
+                .map(entity -> modelMapper.map(entity, PolicyMappingDto.class));
+    }
+
+    public Mono<PolicyMappingDto> getPolicyMappingById(Long id) {
+        return policyMappingRepository.findById(id)
+                .map(entity -> modelMapper.map(entity, PolicyMappingDto.class)); // Convert to DTO
+    }
+
+    public Mono<PolicyMappingDto> update(PolicyMappingDto policyMappingDto, Long id){
+        policyMappingDto.setRecordStatus(PolicyMappingDto.RecordStatus.INSERTED);
+        return policyMappingRepository.findById(id)
+                .flatMap(entity -> {
+                    this.modelMapper.map(policyMappingDto, entity);
+                    entity.setId(id);
+                    return this.policyMappingRepository.save(entity);
+                })
+                .map(updatedEntity -> this.modelMapper.map(updatedEntity, PolicyMappingDto.class));
+    }
 
 }

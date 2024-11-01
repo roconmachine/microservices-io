@@ -19,16 +19,7 @@ import reactor.core.publisher.Mono;
 public class ResourceController  implements ResourcesApi {
 
     private final PolicyMappingService service;
-//    @GetMapping("/test")
-//    public ResponseEntity<Flux<PolicyMappingEntity>> ping(){
-//        PolicyMappingEntity policyMapping = PolicyMappingEntity.builder()
-//                .action(ActionEnum.WRITE)
-//                .recordStatus(RecordStatus.DELETED)
-//                .resource_id(8L)
-//                .build();
-//        Flux<PolicyMappingEntity> response =  this.service.getPolicyMapping(policyMapping);
-//        return new ResponseEntity(response, HttpStatus.OK);
-//    }
+
     @Override
     public Mono<ResponseEntity<Flux<Resource>>> resourcesGet(ServerWebExchange serverWebExchange) {
         return null;

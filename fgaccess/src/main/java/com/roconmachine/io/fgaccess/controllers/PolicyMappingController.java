@@ -16,8 +16,6 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.UUID;
-
 @RestController
 
 @RequestMapping("${service.name}/${service.apiversion}")
@@ -43,18 +41,34 @@ public class PolicyMappingController implements PolicyMappingsApi {
     }
 
     @Override
-    public Mono<ResponseEntity<Void>> policyMappingsIdDelete(UUID uuid, ServerWebExchange serverWebExchange) {
-        return null;
+    public Mono<ResponseEntity<Void>> policyMappingsIdDelete(Long id, ServerWebExchange serverWebExchange) {
+        return service.deletePolicyMappingsId(id)
+                .map(deleted -> deleted ? ResponseEntity.noContent().<Void>build():ResponseEntity.notFound().build());
     }
 
     @Override
-    public Mono<ResponseEntity<PolicyMapping>> policyMappingsIdGet(UUID uuid, ServerWebExchange serverWebExchange) {
-        return null;
+    public Mono<ResponseEntity<PolicyMapping>> policyMappingsIdGet(Long id, ServerWebExchange serverWebExchange) {
+        return service.getPolicyMappingById(id)
+                .map(dto->PolicyMappingConverter.convertPolicyMapping(dto))
+                .map(ResponseEntity::ok)
+                .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
     @Override
-    public Mono<ResponseEntity<PolicyMapping>> policyMappingsIdPut(UUID uuid, @Valid Mono<PolicyMapping> mono, ServerWebExchange serverWebExchange) {
-        return null;
+    public Mono<ResponseEntity<PolicyMapping>> policyMappingsIdPut(Long id, @Valid Mono<PolicyMapping> mono, ServerWebExchange serverWebExchange) {
+
+        return mono.map(policyMapping -> {
+            return PolicyMappingConverter.convertPolicyMapping(policyMapping);
+        }).flatMap(policyMappingDto -> {
+            return service.update(policyMappingDto,id);
+        }).map(policyMappingDto -> {
+            return PolicyMappingConverter.convertPolicyMapping(policyMappingDto);
+        }).map(ResponseEntity::ok)
+                .defaultIfEmpty(ResponseEntity.notFound().build());
+//        return service.update(PolicyMappingConverter.convertPolicyMapping(s), id)
+//                .map(dto ->PolicyMappingConverter.convertPolicyMapping(dto))
+//                .map(ResponseEntity::ok)
+//                .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
     @Override
