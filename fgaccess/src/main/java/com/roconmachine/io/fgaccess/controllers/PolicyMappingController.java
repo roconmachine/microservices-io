@@ -37,7 +37,7 @@ public class PolicyMappingController implements PolicyMappingsApi {
                 .build())
                   .map(entity -> PolicyMappingConverter.convertPolicyMapping(entity));
 
-        return  Mono.just(ResponseEntity.ok(flux));
+        return  Mono.just(ResponseEntity.ok(flux)).onErrorResume(throwable -> Mono.just(ResponseEntity.notFound().build()));
     }
 
     @Override

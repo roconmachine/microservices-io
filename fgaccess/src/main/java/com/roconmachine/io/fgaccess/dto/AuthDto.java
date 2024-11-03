@@ -6,20 +6,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class PolicyDto {
-    private Long id;
-    private String name;
-    private EffectEnum effect;
-
-
-    public enum EffectEnum {
-        ALLOW,
-        DENY;
-    }
+public class AuthDto {
+    private Long userid;
+    private String action;
+    private Long resourceId;
 }
-
-
-
