@@ -3,7 +3,7 @@ package com.roconmachine.io.fgaccess.controllers;
 import com.roconmachine.io.dataframe.access.interfaces.AuthzApi;
 import com.roconmachine.io.dataframe.access.models.AuthzRequest;
 import com.roconmachine.io.dataframe.access.models.AuthzResponse;
-import com.roconmachine.io.fgaccess.dto.AuthDto;
+import com.roconmachine.io.fgaccess.domains.AuthDto;
 import com.roconmachine.io.fgaccess.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

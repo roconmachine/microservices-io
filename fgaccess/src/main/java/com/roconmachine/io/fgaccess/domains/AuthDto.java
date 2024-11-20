@@ -1,4 +1,4 @@
-package com.roconmachine.io.fgaccess.dto;
+package com.roconmachine.io.fgaccess.domains;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

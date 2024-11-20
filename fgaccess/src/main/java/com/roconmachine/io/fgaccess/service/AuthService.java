@@ -1,7 +1,7 @@
 package com.roconmachine.io.fgaccess.service;
 
-import com.roconmachine.io.fgaccess.dto.AuthDto;
-import com.roconmachine.io.fgaccess.dto.PolicyMappingDto;
+import com.roconmachine.io.fgaccess.domains.AuthDto;
+import com.roconmachine.io.fgaccess.domains.PolicyMappingDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;

@@ -1,7 +1,7 @@
 package com.roconmachine.io.fgaccess.converter;
 
 import com.roconmachine.io.dataframe.access.models.PolicyMapping;
-import com.roconmachine.io.fgaccess.dto.PolicyMappingDto;
+import com.roconmachine.io.fgaccess.domains.PolicyMappingDto;
 
 public class PolicyMappingConverter {
     public static PolicyMapping convertPolicyMapping(PolicyMappingDto policyMappingDto){

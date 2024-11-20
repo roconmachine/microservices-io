@@ -4,7 +4,7 @@ package com.roconmachine.io.fgaccess.controllers;
 import com.roconmachine.io.dataframe.access.interfaces.PolicyMappingsApi;
 import com.roconmachine.io.dataframe.access.models.PolicyMapping;
 import com.roconmachine.io.fgaccess.converter.PolicyMappingConverter;
-import com.roconmachine.io.fgaccess.dto.PolicyMappingDto;
+import com.roconmachine.io.fgaccess.domains.PolicyMappingDto;
 import com.roconmachine.io.fgaccess.service.PolicyMappingService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

@@ -18,14 +18,11 @@ import java.util.List;
 @AllArgsConstructor
 public class ResourceEntity {
 
-    @Id
-    private Long id;
-
+    @Id private Long id;
     @Column private String name;
     @Column private String type;
     @Column private String source;
     @Column private String owner;
     @Column private RecordStatus record_status;
-
     @Transient private List<PropertiesEntity> properties;
 }

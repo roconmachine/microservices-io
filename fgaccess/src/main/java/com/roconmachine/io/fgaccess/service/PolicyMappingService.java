@@ -1,6 +1,6 @@
 package com.roconmachine.io.fgaccess.service;
 
-import com.roconmachine.io.fgaccess.dto.PolicyMappingDto;
+import com.roconmachine.io.fgaccess.domains.PolicyMappingDto;
 import com.roconmachine.io.fgaccess.entity.PolicyMappingEntity;
 import com.roconmachine.io.fgaccess.repo.PolicyMappingRepository;
 import com.roconmachine.io.fgaccess.repo.PolicyMappingSearch;
