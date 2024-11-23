@@ -4,29 +4,22 @@ spring:
     application:
         name: fgaccess
 
-server:
-    port: 8084
 
 
-
-
-
-
-#server:
-#    port: 8084
-#spring:
 #    r2dbc:
-#        url: r2dbc:postgresql://localhost:5432/IO_FGACCESS_DB
+#        url: r2dbc:postgresql://192.168.0.138:5432/IO_FGACCESS_DB
 #        username: postgres
 #        password: postgres
 #        properties:
 #            logging.level: DEBUG
 #    flyway:
 #        enabled: true
-#        url: jdbc:postgresql://localhost:5432/IO_FGACCESS_DB
+#        url: jdbc:postgresql://192.168.0.138:5432/IO_FGACCESS_DB
 #        user: postgres
 #        password: postgres
 #        locations: classpath:db/migration
+#server:
+#    port: 8084
 #
 #application:
 #    name: fgaccess

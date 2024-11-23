@@ -94,6 +94,9 @@ services:
       - discovery
     networks:
       - com-roconmachine-io
+
+
+
   postgresql:
     container_name: ms_pg_sql
     image: postgres:16
@@ -131,6 +134,44 @@ services:
       - com-roconmachine-io
     command:
       - "start-dev"
+
+  fgaccess:
+    build:
+      context: ./io.fgaccess
+      dockerfile: Dockerfile
+    container_name: fgaccess
+    ports:
+      - 8084:8084
+    environment:
+      - CONFIG_SERVER_URL=http://192.168.0.138:8888
+      - EUREKA_URI=http://192.168.0.138:8761/eureka
+      - DB_URL:r2dbc:postgresql://192.168.0.138:5432/IO_FGACCESS_DB
+      - DB_USERNAME:postgres  
+      - DB_PASSWORD:postgres
+      - FLYWAY_LOCATION:classpath:db/migration
+    depends_on:
+      - config-server
+      - discovery
+      - postgresql
+    networks:
+      - com-roconmachine-io
+  cdn:
+    container_name: cdn
+    build:
+      context: ./io.cdn
+      dockerfile: Dockerfile
+    ports:
+      - 8085:8085
+    environment:
+      - CONFIG_SERVER_URL=http://192.168.0.138:8888
+      - EUREKA_URI=http://192.168.0.138:8761/eureka
+    depends_on:
+      - config-server
+      - discovery
+      - postgresql
+    networks:
+      - com-roconmachine-io
+
 networks:
   com-roconmachine-io:
     driver: bridge

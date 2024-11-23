@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.roconmachine</groupId>
-	<artifactId>io.fgaccess</artifactId>
+	<artifactId>io.cdn</artifactId>
 	<version>0.0.1</version>
-	<name>io.fgaccess</name>
-	<description>Service to enable fine grain access on domain object and resource.</description>
+	<name>io.cdn</name>
+	<description>Enables document upload and download service.</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -40,6 +40,11 @@
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>r2dbc-postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
@@ -49,31 +54,15 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
+			<groupId>com.roconmachine</groupId>
+			<artifactId>io.dataframe</artifactId>
+			<version>0.0.1</version>
 		</dependency>
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>r2dbc-postgresql</artifactId>
-			<scope>runtime</scope>
-		</dependency>
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
-		</dependency>
-		<!--flyway-->
-		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-core</artifactId>
-			<version>9.22.3</version>
-		</dependency>
-<!--		dataframe-->
-		<dependency>
-			<groupId>com.roconmachine</groupId>
-			<artifactId>io.dataframe</artifactId>
-			<version>0.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -113,19 +102,6 @@
 					</excludes>
 				</configuration>
 			</plugin>
-
-			<plugin>
-				<groupId>org.flywaydb</groupId>
-				<artifactId>flyway-maven-plugin</artifactId>
-				<version>9.22.3</version>
-				<configuration>
-					<url>jdbc:postgresql://localhost:5432/IO_FGACCESS_DB</url>
-					<user>postgres</user>
-					<password>postgres</password>
-					<locations>classpath:db/migration</locations>
-				</configuration>
-			</plugin>
-
 		</plugins>
 	</build>
 	<repositories>

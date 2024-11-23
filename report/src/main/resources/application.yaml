@@ -1,0 +1,8 @@
+spring:
+
+  config:
+    import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888}
+  application:
+    name: report-service
+  profiles:
+    active: docker
