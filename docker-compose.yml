@@ -21,6 +21,10 @@ services:
     container_name: config
     ports:
       - "8888:8888"
+    environment:
+      - GIT_URL:https://github.com/roconmachine/microservices-io-config/
+      - GIT_USERNAME:roconmachine
+      - GIT_PASSWORD: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
     networks:
       - com-roconmachine-io
   gatekeeper: 
