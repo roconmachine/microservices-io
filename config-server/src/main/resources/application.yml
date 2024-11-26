@@ -9,9 +9,10 @@ spring:
                 git:
                     uri: ${GIT_URL:https://github.com/roconmachine/microservices-io-config/}
                     username: ${GIT_USERNAME:roconmachine}
-                    password: ${GIT_PASSWORD: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}
+                    password: ${GIT_PASSWORD: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}
 
                     skipSslValidation: true
                     default-label: master
 
 
+#    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

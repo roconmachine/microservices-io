@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ReportEntity {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private Long id;
 
     @Column(name = "title", nullable = false)
@@ -31,6 +31,11 @@ public class ReportEntity {
     private String reporter;
 
     @OneToMany(mappedBy = "report", cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JoinColumn(name = "report_id")
     private List<LocationEntity> locations;
+
+    @OneToMany(mappedBy = "report", cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JoinColumn(name = "report_id")
+    private List<MediaContentEntity> mediaContents;
 
 }

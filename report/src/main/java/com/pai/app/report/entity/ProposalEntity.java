@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Entity(name = "proposals")
 @Data
 @Builder
@@ -16,9 +18,9 @@ public class ProposalEntity {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
+//    @ManyToOne
     @JoinColumn(name = "report_id", nullable = false)
-    private ReportEntity report;
+    private Long reportId;
 
     @Column(name = "user_id", nullable = false)
     private String userId;
@@ -29,6 +31,6 @@ public class ProposalEntity {
     private String action;
 
     @Column(name = "amount")
-    private double amount;
+    private BigDecimal amount;
 
 }

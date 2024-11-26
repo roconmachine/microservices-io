@@ -17,3 +17,7 @@ spring:
     name: report
   profiles:
     active: docker
+
+service:
+  name: report
+  apiversion: v1.0
