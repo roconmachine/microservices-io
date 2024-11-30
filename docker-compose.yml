@@ -21,10 +21,7 @@ services:
     container_name: config
     ports:
       - "8888:8888"
-    environment:
-      - GIT_URL:https://github.com/roconmachine/microservices-io-config
-      - GIT_USERNAME:roconmachine
-      - GIT_PASSWORD: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
+
     networks:
       - com-roconmachine-io
   gatekeeper: 
@@ -175,7 +172,38 @@ services:
       - postgresql
     networks:
       - com-roconmachine-io
-
+  report:
+    container_name: report
+    build:
+      context: ./report
+      dockerfile: Dockerfile
+    ports:
+      - 8086:8086
+    environment:
+      - CONFIG_SERVER_URL=http://192.168.0.138:8888
+      - EUREKA_URI=http://192.168.0.138:8761/eureka
+    depends_on:
+      - config-server
+      - discovery
+      - postgresql
+    networks:
+      - com-roconmachine-io
+  state:
+    container_name: state
+    build:
+      context: ./state
+      dockerfile: Dockerfile
+    ports:
+      - 8087:8087
+    environment:
+      - CONFIG_SERVER_URL=http://192.168.0.138:8888
+      - EUREKA_URI=http://192.168.0.138:8761/eureka
+    depends_on:
+      - config-server
+      - discovery
+      - postgresql
+    networks:
+      - com-roconmachine-io
 networks:
   com-roconmachine-io:
     driver: bridge

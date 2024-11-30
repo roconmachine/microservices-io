@@ -17,7 +17,7 @@ public class ProposalConverter {
 
     public static Proposal toModel(ProposalEntity entity){
         return Proposal.builder()
-                .id(entity.getId())
+                //.id(entity.getId())
                 .amount(entity.getAmount())
                 .action(entity.getAction())
                 .state(entity.getStateId())
