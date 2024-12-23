@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table("email_notifications")
+@Table("notification_templates")
 @Data
 @Builder
 @NoArgsConstructor

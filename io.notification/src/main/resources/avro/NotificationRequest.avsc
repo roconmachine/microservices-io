@@ -1,0 +1,43 @@
+{
+  "type": "record",
+  "name": "NotificationRequest",
+  "namespace": "com.roconmachine.io.notification.kafka",
+  "fields": [
+    {
+      "name": "id",
+      "type": "long"
+    },
+    {
+      "name": "type",
+      "type": "string"
+    },
+    {
+      "name": "subject_template",
+      "type": "string"
+    },
+    {
+      "name": "subject_placeholder",
+      "type": "string"
+    },
+    {
+      "name": "body_template",
+      "type": "string"
+    },
+    {
+      "name": "body_placeholder",
+      "type": "string"
+    },
+    {
+      "name": "status",
+      "type": "string"
+    },
+    {
+      "name": "recipients",
+      "type": "string"
+    },
+    {
+      "name": "severity",
+      "type": "string"
+    }
+  ]
+}

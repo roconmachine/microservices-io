@@ -85,13 +85,55 @@
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+<!--		testing-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-testcontainers</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>1.19.3</version>
+			<scope>test</scope>
+		</dependency>
+<!--		dataframe-->
 		<dependency>
 			<groupId>com.roconmachine</groupId>
 			<artifactId>io.dataframe</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-stream-binder-kafka</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-stream-schema</artifactId>
+			<version>2.2.1.RELEASE</version>
+		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>io.confluent</groupId>-->
+<!--			<artifactId>kafka-avro-serializer</artifactId>-->
+<!--			<version>4.0.0</version>-->
+<!--		</dependency>-->
 
 	</dependencies>
 	<dependencyManagement>
@@ -109,6 +151,7 @@
 	<build>
 		<finalName>${project.name}-${project.version}</finalName>
 		<plugins>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -121,9 +164,37 @@
 					</excludes>
 				</configuration>
 			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.apache.avro</groupId>-->
+<!--				<artifactId>avro-maven-plugin</artifactId>-->
+<!--				<version>1.8.2</version>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<id>schemas</id>-->
+<!--						<phase>generate-sources</phase>-->
+<!--						<goals>-->
+<!--							<goal>schema</goal>-->
+<!--							<goal>protocol</goal>-->
+<!--							<goal>idl-protocol</goal>-->
+<!--						</goals>-->
+<!--						<configuration>-->
+<!--							<sourceDirectory>${project.basedir}/src/main/resources/</sourceDirectory>-->
+<!--							<outputDirectory>${project.basedir}/src/main/java/</outputDirectory>-->
+<!--						</configuration>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
 		</plugins>
 	</build>
 	<repositories>
+<!--		<repository>-->
+<!--			<id>spring-releases</id>-->
+<!--			<url>https://repo.spring.io/release</url>-->
+<!--		</repository>-->
+		<repository>
+			<id>confluent</id>
+			<url>https://packages.confluent.io/maven/</url>
+		</repository>
 		<repository>
 			<id>spring-milestones</id>
 			<name>Spring Milestones</name>
@@ -132,6 +203,7 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
+
 	</repositories>
 
 </project>

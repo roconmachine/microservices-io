@@ -4,7 +4,6 @@ import com.roconmachine.io.notification.core.AbstructService;
 import com.roconmachine.io.notification.entities.EmailNotificationEntity;
 import com.roconmachine.io.notification.repositories.EmailNotificationRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.r2dbc.core.R2dbcEntityTemplate;
 import org.springframework.data.relational.core.query.Criteria;
 import org.springframework.data.relational.core.query.Query;
@@ -16,8 +15,6 @@ import reactor.core.publisher.Flux;
 public class EmailNotificationService extends AbstructService<EmailNotificationEntity, EmailNotificationRepository> {
 
     private final R2dbcEntityTemplate r2dbcTemplate;
-    @Autowired
-    private EmailNotificationRepository emailNotificationRepository;
     public Flux<EmailNotificationEntity> search(String status, String severity) {
 
         Criteria criteria = null;

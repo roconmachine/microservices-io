@@ -3,7 +3,9 @@ package com.roconmachine.io.notification.converter;
 import com.roconmachine.io.dataframe.notification.models.Recipient;
 import com.roconmachine.io.notification.core.Convertable;
 import com.roconmachine.io.notification.entities.RecipientEntity;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RecipientConverter implements Convertable<RecipientEntity, Recipient> {
     @Override
     public RecipientEntity toEntity(Recipient recipient) {
