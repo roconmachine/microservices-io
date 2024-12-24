@@ -7,6 +7,7 @@ import com.roconmachine.io.notification.converter.EmailNotificaitonConverter;
 import com.roconmachine.io.notification.services.EmailNotificationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.apache.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,16 +27,6 @@ public class NotificationController implements NotificationApi {
 
         if (status == null & severity == null)
             return Mono.just(ResponseEntity.badRequest().build());
-//        return emailNotificationService.search(status, severity)
-//                .map(emailNotificaitonConverter::toModel)
-//                .collectList()
-//                .flatMap(actions -> {
-//                    if (actions.isEmpty()) {
-//                        return Mono.just(ResponseEntity.noContent().build());
-//                    }
-//                    return Mono.just(ResponseEntity.ok(Flux.fromIterable(actions)));
-//                });
-//        VS
         return Mono.just(
                         ResponseEntity.ok(
                                 emailNotificationService.search(status, severity)
@@ -49,6 +40,17 @@ public class NotificationController implements NotificationApi {
                 })
                 .log();
 
+    }
+
+    @Override
+    public Mono<ResponseEntity<Void>> setStatus(Long id, String status, ServerWebExchange serverWebExchange) {
+
+        return this.emailNotificationService.getById(id)
+                .flatMap(emailNotificationEntity -> {
+                    emailNotificationEntity.setStatus(status);
+                    return this.emailNotificationService.save(emailNotificationEntity) // Save is now part of the chain
+                            .then(Mono.just(ResponseEntity.ok().build())); // Return an empty ResponseEntity on success
+                });
     }
 
     @Override
