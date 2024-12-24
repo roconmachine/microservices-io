@@ -7,7 +7,8 @@ import com.roconmachine.io.notification.converter.EmailNotificaitonConverter;
 import com.roconmachine.io.notification.services.EmailNotificationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.apache.http.HttpStatus;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/${service.name}/${service.apiversion}")
 @RequiredArgsConstructor
+
 public class NotificationController implements NotificationApi {
     private final EmailNotificationService emailNotificationService;
     private final EmailNotificaitonConverter emailNotificaitonConverter;
@@ -44,14 +46,14 @@ public class NotificationController implements NotificationApi {
 
     @Override
     public Mono<ResponseEntity<Void>> setStatus(Long id, String status, ServerWebExchange serverWebExchange) {
-
-        return this.emailNotificationService.getById(id)
+         return this.emailNotificationService.getById(id)
                 .flatMap(emailNotificationEntity -> {
                     emailNotificationEntity.setStatus(status);
-                    return this.emailNotificationService.save(emailNotificationEntity) // Save is now part of the chain
-                            .then(Mono.just(ResponseEntity.ok().build())); // Return an empty ResponseEntity on success
+                    return this.emailNotificationService.save(emailNotificationEntity) // Ensure save() returns Mono<Void>
+                            .then(Mono.just(ResponseEntity.noContent().build())); // Return Mono<ResponseEntity<Void>>
                 });
     }
+
 
     @Override
     public Mono<ResponseEntity<Notification>> getById(Long aLong, ServerWebExchange serverWebExchange) {
