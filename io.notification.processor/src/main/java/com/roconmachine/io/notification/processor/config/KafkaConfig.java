@@ -1,5 +1,6 @@
 package com.roconmachine.io.notification.processor.config;
 
+import com.roconmachine.io.dataframe.notification.client.api.NotificationApi;
 import com.roconmachine.io.notification.processor.schema.MessageRequest;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -15,6 +16,7 @@ import org.springframework.kafka.listener.CommonErrorHandler;
 import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.listener.MessageListenerContainer;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
+import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -69,5 +71,17 @@ public class KafkaConfig {
 
         return factory;
     }
+
+//    private String notificationUrl = "localhost:8088/io.notification/v1.0";
+//    @Bean
+//    public NotificationApi getNotificationApi(){
+//        if (!StringUtils.hasText(notificationUrl)) {
+//            throw new IllegalStateException("Required property 'services.notification.baseUrl' is not defined!");
+//        }
+//        com.roconmachine.io.dataframe.notification.client.ApiClient apiClient =
+//                new com.roconmachine.io.dataframe.notification.client.ApiClient();
+//        apiClient.setBasePath(notificationUrl);
+//        return new NotificationApi(apiClient);
+//    }
 
 }

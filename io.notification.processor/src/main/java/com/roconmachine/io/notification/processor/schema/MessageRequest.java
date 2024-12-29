@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class MessageRequest {
 
     @JsonProperty("id")

@@ -103,7 +103,7 @@ public class NotificationPushScheduler {
         request.setSubjectPlaceholder(emailNotificationEntity.getSubject_placeholder());
         request.setSeverity(emailNotificationEntity.getSeverity());
         request.setStatus(emailNotificationEntity.getStatus());
-
+        request.setRecipients(emailNotificationEntity.getRecipients());
         return request;
     }
 }
