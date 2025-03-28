@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.roconmachine.io</groupId>
-	<artifactId>gatekeeper</artifactId>
+	<artifactId>io.gatekeeper</artifactId>
 	<version>0.0.1</version>
-	<name>GateKeeper</name>
+	<name>io.gateKeeper</name>
 	<description>the project will act as a gateway and token validator </description>
 	<url/>
 	<licenses>

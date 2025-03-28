@@ -22,9 +22,7 @@ public class SecurityConfig {
 
 
 
-    @Value(
-            "${spring.security.oauth2.resourceserver.jwt.issuer-uri}"
-    )
+    @Value("${spring.security.oauth2.resourceserver.jwt.issuer-uri}")
     private String issuer_id;
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
@@ -42,7 +40,7 @@ public class SecurityConfig {
                 .authorizeExchange(auth -> auth.
                         pathMatchers("/ping").permitAll()
                         .pathMatchers("/accounts/api/**").authenticated()
-
+//                        .pathMatchers("/report/v1.0/**").authenticated()
                         .anyExchange()
                         .authenticated()
                 )
