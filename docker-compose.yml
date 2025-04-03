@@ -5,40 +5,45 @@ volumes:
 
 
 services:
-  discovery:
-    build:
-      context: ./discovery
-      dockerfile: Dockerfile
-    container_name: discovery-service
-    environment:
-      - EUREKA_URI=http://192.168.0.138:8761/eureka
-      - CONFIG_SERVER_URL=http://192.168.0.138:8888
-    ports:
-      - "8761:8761"
-    networks:
-      - com-roconmachine-io
-  config-server:
+  config:
     build:
       context: ./config-server
       dockerfile: Dockerfile
     container_name: config
     ports:
       - "8888:8888"
-
     networks:
       - com-roconmachine-io
+
+  discovery:
+    build:
+      context: ./discovery
+      dockerfile: Dockerfile
+    container_name: discovery
+    env_file:
+      - env/discovery.env
+#    environment:
+#      - EUREKA_URI=http://discovery:8761/eureka
+#      - CONFIG_SERVER_URL=http://config:8888
+    depends_on:
+      - config
+    ports:
+      - "8761:8761"
+    networks:
+      - com-roconmachine-io
+
   gatekeeper: 
     build:
       context: ./io.gatekeeper
       dockerfile: Dockerfile
     container_name: gatekeeper
     environment:
-      - EUREKA_URI=http://192.168.0.138:8761/eureka
-      - CONFIG_SERVER_URL=http://192.168.0.138:8888
-      - OAUTH2_RESOURCE_SERVER_JWT_ISSUER_URI=http://192.168.0.138:9090/realms/microservice-io
+      - EUREKA_URI=http://discovery:8761/eureka
+      - CONFIG_SERVER_URL=http://config:8888
+      - OAUTH2_RESOURCE_SERVER_JWT_ISSUER_URI=http://gatekeeper:9090/realms/microservice-io
     depends_on:
-      - discovery
-      - config-server
+#      - discovery
+      - config
     ports:
       - "8080:8080"
     networks:
@@ -58,7 +63,7 @@ services:
       - ACCOUNT_SERVER_MONGO_DB:accounts
 
     depends_on:
-      - config-server
+      - config
       - discovery
       - mongodb
     networks:
@@ -94,7 +99,7 @@ services:
     ports:
       - 8081:8081
     depends_on:
-      - config-server
+      - config
       - discovery
     networks:
       - com-roconmachine-io
@@ -154,7 +159,7 @@ services:
       - DB_PASSWORD:postgres
       - FLYWAY_LOCATION:classpath:db/migration
     depends_on:
-      - config-server
+      - config
       - discovery
       - postgresql
     networks:
@@ -167,11 +172,11 @@ services:
     ports:
       - 8085:8085
     environment:
-      - CONFIG_SERVER_URL=http://192.168.0.138:8888
+      - CONFIG_SERVER_URL=http://config:8888
       - EUREKA_URI=http://192.168.0.138:8761/eureka
     depends_on:
-      - config-server
-      - discovery
+      - config
+#      - discovery
       - postgresql
     networks:
       - com-roconmachine-io
@@ -186,7 +191,7 @@ services:
       - CONFIG_SERVER_URL=http://192.168.0.138:8888
       - EUREKA_URI=http://192.168.0.138:8761/eureka
     depends_on:
-      - config-server
+      - config
       - discovery
       - postgresql
     networks:
@@ -202,7 +207,7 @@ services:
       - CONFIG_SERVER_URL=http://192.168.0.138:8888
       - EUREKA_URI=http://192.168.0.138:8761/eureka
     depends_on:
-      - config-server
+      - config
       - discovery
       - postgresql
     networks:
