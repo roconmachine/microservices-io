@@ -1,4 +1,5 @@
 server:
+    address: 0.0.0.0
     port: 8888
 spring:
     application:
@@ -6,7 +7,13 @@ spring:
     cloud:
         config:
             server:
-                native:
-                    search-locations: classpath:/configurations
-    profiles:
-        active: native
+                git:
+                    uri: https://github.com/roconmachine/io.configs.git
+#                    username: ${GIT_USERNAME:roconmachine}
+#                    password: ${GIT_PASSWORD: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}
+
+                    skipSslValidation: true
+                    default-label: master
+
+
+#    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

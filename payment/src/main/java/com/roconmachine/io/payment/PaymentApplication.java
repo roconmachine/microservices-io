@@ -22,6 +22,12 @@ public class PaymentApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		producer.sendMessage(new KafkaRequestMessage("name", "example.com"));
+		producer.sendMessage(new KafkaRequestMessage("name 1", "example1.com "));
+
+		producer.sendMessage(new KafkaRequestMessage("name 2", "example2.com"));
+
+		producer.sendMessage(new KafkaRequestMessage("name 4", "example4.com"));
+
+		producer.sendMessage(new KafkaRequestMessage("name 3", "example3.com"));
 	}
 }

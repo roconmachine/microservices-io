@@ -4,8 +4,8 @@ server:
 spring:
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      database: accounts
+      host: ${ACCOUNT_SERVER_MONGO_HOST:172.23.0.6}
+      port: ${ACCOUNT_SERVER_MONGO_PORT:27017}
+      database: ${ACCOUNT_SERVER_MONGO_DB:accounts}
       authentication-database: admin
 

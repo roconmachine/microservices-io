@@ -1,0 +1,32 @@
+spring:
+    config:
+        import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888}
+    application:
+        name: fgaccess
+
+
+
+#    r2dbc:
+#        url: r2dbc:postgresql://192.168.0.138:5432/IO_FGACCESS_DB
+#        username: postgres
+#        password: postgres
+#        properties:
+#            logging.level: DEBUG
+#    flyway:
+#        enabled: true
+#        url: jdbc:postgresql://192.168.0.138:5432/IO_FGACCESS_DB
+#        user: postgres
+#        password: postgres
+#        locations: classpath:db/migration
+#server:
+#    port: 8084
+#
+#application:
+#    name: fgaccess
+#service:
+#    name: access
+#    apiversion: v1.0
+#
+#logging:
+#    level:
+#        org.springframework.r2dbc: DEBUG

@@ -1,0 +1,23 @@
+#server:
+#  port: 8086
+#spring:
+#  datasource:
+#    url: jdbc:postgresql://192.168.0.138:5432/REPORT_DB
+#    username: postgres
+#    password: postgres
+#
+#  jpa:
+#    hibernate.ddl-auto: update
+#    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+spring:
+  config:
+    import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888}
+  application:
+    name: report
+  profiles:
+    active: docker
+
+#service:
+#  name: report
+#  apiversion: v1.0
